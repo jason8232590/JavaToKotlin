@@ -7,7 +7,7 @@ import com.example.core.R
 
 object CacheUtils {
 
-    private val context   = BaseApplication.currentApplication();
+    private val context   = BaseApplication.currentApplication;
 
     val SP: SharedPreferences = context.getSharedPreferences(context.getString(R.string.app_name), Context.MODE_PRIVATE);
 
@@ -15,7 +15,6 @@ object CacheUtils {
         SP.edit().putString(key, value).apply();
     }
 
-    fun get(key: String? ): String? {
-        return SP.getString(key, null);
-    }
+    fun get(key: String? ) = SP.getString(key, null);
+
 }

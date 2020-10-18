@@ -12,26 +12,9 @@ import com.example.app.R
 import com.example.core.utils.dp2px
 import java.util.*
 
-class CodeView : AppCompatTextView {
+class CodeView constructor(var codeViewContext: Context, var attributes: AttributeSet?): AppCompatTextView(codeViewContext, attributes) {
 
-    constructor(context: Context): this(context, null){
-
-    }
-    constructor(context: Context, attributes: AttributeSet?): super(context, attributes){
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
-        setGravity(Gravity.CENTER);
-        setBackgroundColor(getContext().getColor(R.color.colorPrimary));
-        setTextColor(Color.WHITE);
-
-        paint.isAntiAlias = true;
-        paint.style = Paint.Style.STROKE;
-        paint.color = getContext().getColor(R.color.colorAccent);
-        paint.strokeWidth = dp2px(6f);
-
-        updateCode();
-    }
-
-
+    //we should put the code before using it
     val  paint: Paint =  Paint()
 
     private val codeList = arrayOf(
@@ -45,12 +28,34 @@ class CodeView : AppCompatTextView {
             "tcp/ip"
     )
 
+    init {
+        setTextSize(TypedValue.COMPLEX_UNIT_SP, 18f);
+        setGravity(Gravity.CENTER);
+        setBackgroundColor(getContext().getColor(R.color.colorPrimary));
+        setTextColor(Color.WHITE);
+
+        paint.run {
+            isAntiAlias = true;
+            style = Paint.Style.STROKE;
+            color = getContext().getColor(R.color.colorAccent);
+            strokeWidth = 6f.dp2px();
+        }
+
+
+        updateCode();
+    }
+    constructor(context: Context): this(context, null){
+
+    }
+
+
+
+
+
 
 
     fun updateCode() {
-        val random =  Random().nextInt(codeList.size);
-        val code = codeList[random];
-        setText(code);
+        text= codeList[Random().nextInt(codeList.size)];
     }
 
 

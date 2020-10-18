@@ -6,11 +6,7 @@ import androidx.annotation.IdRes
 import androidx.appcompat.view.menu.MenuView
 import androidx.recyclerview.widget.RecyclerView
 
-open class BaseViewHolder: RecyclerView.ViewHolder {
-
-    constructor(itemView: View): super(itemView){
-
-    }
+open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     val  viewHashMap: MutableMap<Int, View>  =  HashMap()
 

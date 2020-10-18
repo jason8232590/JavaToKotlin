@@ -31,8 +31,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
         et_username.setText(CacheUtils.get(usernameKey));
         et_password.setText(CacheUtils.get(passwordKey));
 
-        val btn_login :Button = findViewById(R.id.btn_login);
-        val  img_code : CodeView = findViewById(R.id.code_view);
+        val btn_login: Button = findViewById(R.id.btn_login);
+        val  img_code: CodeView = findViewById(R.id.code_view);
         btn_login.setOnClickListener(this);
         img_code.setOnClickListener(this);
 
@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener{
     }
 
     fun verify(user: User) : Boolean {
-        if (user.username != null && user.username!!.length < 4) {
+        if (user.username?.length ?: 0 <4 ) {
            toast("用户名不合法");
             return false;
         }
